@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NoMatch from "./Pages/NoMatch";
 import Navbar from "./Navbar";
-import Contact from "./Pages/Contact";
-import about from "./Pages/About";
 import MovieInfos from "./Pages/MovieInfos";
 import {
   Route,
@@ -10,7 +8,6 @@ import {
   Routes,
   useParams,
 } from "react-router-dom";
-import AppFooter from "./AppFooter";
 import Login from "./Pages/Login";
 import HomePage from "./Pages/HomePage";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
@@ -22,8 +19,6 @@ export default function Root() {
     { path: "/login", Component: Login },
     { path: "/", Component: HomePage },
     { path: "/:id", Component: HomePage },
-    { path: "/about", Component: about },
-    { path: "/contacts", Component: Contact },
     { path: "/movies/:id", Component: MovieInfos },
     { path: "*", Component: NoMatch },
   ];
@@ -65,7 +60,6 @@ export default function Root() {
           </Routes>
         </div>
 
-        <AppFooter />
       </div>
     </Router>
   );

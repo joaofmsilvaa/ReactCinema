@@ -1,17 +1,7 @@
 import React from "react";
 import { CSSTransition } from "react-transition-group";
 
-export default function Card({
-  movie,
-  movies,
-  getGenreById,
-}) {
-  function fixedDate() {
-    if (movie.release_date) {
-      return movie.release_date.toString().replaceAll("-", "/");
-    }
-  }
-
+export default function Card({ movie, movies, getGenreById }) {
   return (
     <CSSTransition
       in={movies.length > 0}
@@ -38,17 +28,14 @@ export default function Card({
 
             <div className="genresDiv">
               {movie.genre_ids.map((genre_ids) => (
-                <div className="genre" key={genre_ids}>
+                
+                <div key={genre_ids} 
+                 className={`genreCard ${getGenreById(genre_ids) == 'Science Fiction' && 'fontSmall'}`}
+                >
+
                   {getGenreById(genre_ids)}
                 </div>
               ))}
-            </div>
-
-            <div className="infos-div">
-              <p className="description-div">{movie.overview}</p>
-            </div>
-            <div className="date">
-              <div>{fixedDate()}</div>
             </div>
           </div>
         </div>

@@ -68,7 +68,8 @@ function HomePage() {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
     };
 
@@ -90,7 +91,8 @@ function HomePage() {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
     };
 
@@ -103,26 +105,24 @@ function HomePage() {
   };
 
   const getLiked = async () => {
+    const sessionInfos = sessionStorage.getItem("session");
+    let session = JSON.parse(sessionInfos);
+
     const options = {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
     };
 
     const response = await fetch(
-      `https://api.themoviedb.org/3/account/${
-        localStorage.getItem("accDetails").username
-      }/favorite/movies?language=en-US&page=1&sort_by=created_at.asc&api_key=${apiKey}&session_id=${
-        JSON.parse(sessionStorage.getItem("session")).sessionId
-      }`,
+      `https://api.themoviedb.org/3/account/${session.username}/favorite/movies?language=en-US&page=1&sort_by=created_at.asc&api_key=${apiKey}&session_id=${session.sessionId}`,
       options
     );
 
     const data = await response.json();
-
-    console.log(data);
     if (genreFilter.length > 0 || filter.length > 0) {
       filterSearch(data.results);
     } else {
@@ -141,16 +141,29 @@ function HomePage() {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
     };
 
     if (filter.trim().length > 0) {
-      const response = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${filter}&page=${page}`,
-        options
-      );
-      const data = await response.json();
+      let data = "";
+
+      if (page == 0) {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${filter}&page=1`,
+          options
+        );
+
+        data = await response.json();
+      } else {
+        const response = await fetch(
+          `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${filter}&page=${page}`,
+          options
+        );
+
+        data = await response.json();
+      }
 
       if (genreFilter.length > 0 || filter.length > 0) {
         filterSearch(data.results);
@@ -184,7 +197,6 @@ function HomePage() {
         }
       });
     }
-
     if (genreFilteredArr.length > 0 && filter.length > 0) {
       result = result.map((movie) => {
         if (
@@ -200,8 +212,6 @@ function HomePage() {
     }
     if (genreFilteredArr.length < 1 && filter.length > 0) {
       result = result.map((movie) => {
-        console.log(movie.title.toLowerCase().replaceAll(" ", "+"));
-        console.log(filter.toLowerCase().replaceAll(" ", ""));
         if (
           movie.title
             .toLowerCase()
@@ -225,21 +235,27 @@ function HomePage() {
       .name;
   }
 
-  const largewdt = {
-    width: "90%",
-  };
-
   return (
-    <div style={largewdt}>
+    <div>
       <header className="App-header">
-        <h1>ReactCinema</h1>
-        <p>Your Companionship For Movie Nights</p>
-        <Search filter={filter} setFilter={setFilter} />
-        {!JSON.parse(sessionStorage.getItem("session")) ? (
-          <p>Log-in to see your liked movies</p>
-        ) : (
-          <Filters showLiked={showLiked} setShowLiked={setShowLiked} />
-        )}
+        <h1 className="pagetitle">ReactCinema</h1>
+        <p className="mediumText">Your Companionship For Movie Nights</p>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "10px",
+            width: "100%",
+          }}
+        >
+          <Search filter={filter} setFilter={setFilter} />
+          {!JSON.parse(sessionStorage.getItem("session")) ? (
+            <p className="notLoggedMessage">Log-in to see your liked movies</p>
+          ) : (
+            <Filters showLiked={showLiked} setShowLiked={setShowLiked} />
+          )}
+        </div>
 
         <GenresFilters
           genres={genres}
@@ -260,15 +276,10 @@ function HomePage() {
             {movies.length > 0 ? (
               <div>
                 <List movies={movies} getGenreById={getGenreById} />
-                <Paginator
-                  movies={movies}
-                  page={page}
-                  setPage={setPage}
-                  numOfPages={numOfPages}
-                />
+                <Paginator setPage={setPage} numOfPages={numOfPages} />
               </div>
             ) : (
-              <NotFound filter={filter} showLiked={showLiked} />
+              <NotFound />
             )}
           </CSSTransition>
         </SwitchTransition>

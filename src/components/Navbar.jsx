@@ -68,12 +68,6 @@ export default function NavigationBar({ setLogoutFlag }) {
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
-        <li>
-          <NavLink to="/about">About</NavLink>
-        </li>
-        <li>
-          <NavLink to="/contacts">Contacts</NavLink>
-        </li>
         <li
           onMouseEnter={() => {
             setshowingList(true);

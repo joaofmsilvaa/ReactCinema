@@ -16,8 +16,8 @@ export default function LoginForm({
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Tmdb.new.logo.svg/1280px-Tmdb.new.logo.svg.png"
           alt="The Movie Database Logo"
         ></img>
-        <h1 className="login-title">Welcome Back</h1>
-        <div>
+        <h1 className="login-title" style={{color: "#fff"}}>Welcome Back</h1>
+        <div style={{color: "#fff"}}>
           Please log-in to your <a href="https://www.themoviedb.org/">TMDB</a>{" "}
           account
         </div>
@@ -27,7 +27,7 @@ export default function LoginForm({
             validateLogin(event,name,password)
           }}
         >
-          <label>Username</label>
+          <label style={{color: "#fff"}}>Username</label>
           <input
             autoComplete="false"
             className="login-name-input"
@@ -38,7 +38,7 @@ export default function LoginForm({
             }}
           ></input>
 
-          <label>Password</label>
+          <label style={{color: "#fff"}}>Password</label>
           <input
             autoComplete="false"
             className="login-password-input"
@@ -53,7 +53,7 @@ export default function LoginForm({
           </button>
         </form>
         <div className="dontHaveAcc-div">
-          <span>
+          <span style={{color: "#fff"}}>
             Dont have an account? <a href="/">Sign Up</a>
           </span>
         </div>

@@ -32,14 +32,16 @@ export default function MovieInfos() {
   const apiKey = process.env.REACT_APP_APIKEY;
 
   const likeMovie = async () => {
-    const session = JSON.parse(sessionStorage.getItem("session"));
+    const sessionInfos = sessionStorage.getItem("session");
+    let session = JSON.parse(sessionInfos);
 
     const options = {
       method: "POST",
       headers: {
         accept: "application/json",
         "content-type": "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
       body: JSON.stringify({
         media_type: "movie",
@@ -63,7 +65,8 @@ export default function MovieInfos() {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
     };
 
@@ -81,7 +84,8 @@ export default function MovieInfos() {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
     };
 
@@ -99,7 +103,8 @@ export default function MovieInfos() {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
     };
 
@@ -116,7 +121,8 @@ export default function MovieInfos() {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
     };
 
@@ -130,13 +136,16 @@ export default function MovieInfos() {
   };
 
   const movieStatus = async () => {
-    const sessionId = JSON.parse(sessionStorage.getItem("session")).sessionId;
+    const sessionInfos = sessionStorage.getItem("session");
+    let session = JSON.parse(sessionInfos);
+    let sessionId = session.sessionId;
 
     const options = {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
     };
 
@@ -154,14 +163,17 @@ export default function MovieInfos() {
   };
 
   const rateMovie = async (value, movieId) => {
-    const sessionId = JSON.parse(sessionStorage.getItem("session")).sessionId;
+    let session = sessionStorage.getItem("session");
+    let request = JSON.parse(session);
+    let sessionId = request.sessionId;
 
     const options = {
       method: "POST",
       headers: {
         accept: "application/json",
         "Content-Type": "application/json;charset=utf-8",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
       body: `{"value":${value.toString()}}`,
     };
@@ -181,7 +193,6 @@ export default function MovieInfos() {
   };
 
   const movieBackdropImg = {
-    marginTop: `60px`,
     backgroundSize: `cover`,
     backgroundPosition: `center center`,
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://image.tmdb.org/t/p/original/${movie.backdrop_path} `,
@@ -197,6 +208,7 @@ export default function MovieInfos() {
     }
   }
 
+  console.log(reviews.length);
   return (
     <div
       style={{
@@ -219,10 +231,7 @@ export default function MovieInfos() {
                   : `${movie.title} (${movie.original_title})`}
               </h1>
               {sessionStorage.getItem("session") ? (
-                <div
-                  className="infos-like"
-                  onClick={() => likeMovie(Number(params.id))}
-                >
+                <div className="infos-like" onClick={() => likeMovie()}>
                   <svg
                     className={`like-button ${like ? "active" : ""}`}
                     xmlns="http://www.w3.org/2000/svg"
@@ -250,7 +259,7 @@ export default function MovieInfos() {
                   min={0}
                   value={rate}
                   onChange={(event) => {
-                    setRate(event.target.value);
+                    setRate(parseInt(event.target.value));
                   }}
                 ></input>
                 <button
@@ -268,7 +277,7 @@ export default function MovieInfos() {
             <div className="genresDiv">
               {movie.genres != null &&
                 movie.genres.map((genre) => (
-                  <div className="genre" key={genre.id}>
+                  <div className="genreCard" key={genre.id}>
                     {genre.name}
                   </div>
                 ))}
@@ -300,15 +309,15 @@ export default function MovieInfos() {
         </div>
       </div>
 
-      <section className="infos-bottom">
+      <section className="infos-bottom" style={{ width: "90%" }}>
         <h2 className="sectionName">Main Cast</h2>
 
         <div className="castDiv">
           {cast.length > 0
             ? cast.map(
-                (castIndex, index) =>
-                  castIndex.profile_path != null && (
-                    <CastCard key={index} castIndex={castIndex} />
+                (castPerson, index) =>
+                  castPerson.profile_path != null && (
+                    <CastCard key={index} castPerson={castPerson} />
                   )
               )
             : "Cast not found :("}
@@ -320,11 +329,7 @@ export default function MovieInfos() {
             ? videos.map((video) => {
                 if (video.type === "Trailer") {
                   return (
-                    <ReactVideoPlayer
-                      key={video.id}
-                      videoKey={video.key}
-                      platform={video.site}
-                    />
+                    <ReactVideoPlayer key={video.id} videoKey={video.key} />
                   );
                 }
               })
@@ -334,9 +339,13 @@ export default function MovieInfos() {
         <h2 className="sectionName review">Reviews</h2>
         <hr />
         <div className="reviewsDiv">
-          {reviews.length > 0
-            ? reviews.map((review) => {
-                return <ReviewCard review={review} />;
+          {reviews.length > 0 && reviews.length < 5
+            ? reviews.map((review, index) => {
+                return <ReviewCard review={review} key={index} index={index} />;
+              })
+            : reviews.length > 5
+            ? reviews.slice(0, 5).map((review, index) => {
+                return <ReviewCard review={review} key={index} index={index} />;
               })
             : "No reviews yet"}
         </div>

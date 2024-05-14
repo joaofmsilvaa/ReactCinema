@@ -20,7 +20,8 @@ export default function Login() {
       method: "GET",
       headers: {
         accept: "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
     };
 
@@ -40,7 +41,8 @@ export default function Login() {
       headers: {
         accept: "application/json",
         "content-type": "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
       body: JSON.stringify({
         request_token: requestToken,
@@ -57,7 +59,11 @@ export default function Login() {
     return data;
   };
 
-  const validateLogin = async (event, username, password) => {
+  const validateLogin = async (
+    event,
+    username,
+    password
+  ) => {
     event.preventDefault();
 
     const requestToken = await getRequestToken();
@@ -67,7 +73,8 @@ export default function Login() {
       headers: {
         accept: "application/json",
         "content-type": "application/json",
-        Authorization: "",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNmI2ZTMzYTQ2MDE3NDc3Mzg4ODMzZDk0ODRhYmQwNiIsInN1YiI6IjY0ZGEzM2VjZDEwMGI2MDBjNWQyOTg0ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.o4lhbA4TAsTs9AJ9rRUOkWIvrcvbejACHpNHp1026yE",
       },
       body: JSON.stringify({
         request_token: requestToken,
@@ -101,7 +108,15 @@ export default function Login() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        width: "100%",
+        backgroundImage: `url('https://image.tmdb.org/t/p/original/wQxPlS65wgy6Ik7N80bsMpAkjyf.jpg`,
+        backgroundRepeat: "no-repeat",
+        marginTop: "60px",
+        height: "100vh",
+      }}
+    >
       <LoginForm
         setName={setName}
         name={name}
